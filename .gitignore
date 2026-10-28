@@ -26,6 +26,9 @@ seo_audit.db
 coverage/
 htmlcov/
 *.cover
+frontend/test-results/
+frontend/playwright-report/
+test-results/
 
 # Node & Frontend
 frontend/node_modules/

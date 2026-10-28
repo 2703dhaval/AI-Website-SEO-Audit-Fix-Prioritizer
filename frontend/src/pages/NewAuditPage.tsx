@@ -176,7 +176,6 @@ export const NewAuditPage: React.FC = () => {
             <label className="flex items-start gap-3 cursor-pointer">
               <input
                 type="checkbox"
-                required
                 checked={authorizedConsent}
                 onChange={(e) => setAuthorizedConsent(e.target.checked)}
                 className="mt-0.5 rounded border-slate-300 text-brand-900 focus:ring-brand-600 w-4 h-4"
