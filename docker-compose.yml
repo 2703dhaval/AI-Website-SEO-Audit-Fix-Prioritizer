@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./seo_audit.db
+      - CRAWLER_USER_AGENT=SEOAuditProBot/1.0 (+https://scalezix.com/bot; technical-audit)
+      - ALLOW_LOCAL_TEST_DOMAINS=false
+    volumes:
+      - ./backend/seo_audit.db:/app/seo_audit.db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
