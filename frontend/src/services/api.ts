@@ -7,7 +7,8 @@ import {
   ProgressResponse
 } from '../types/api';
 
-const API_BASE = '/api/v1';
+const BACKEND_URL = (import.meta.env.VITE_API_URL || '').replace(/\/$/, '');
+const API_BASE = `${BACKEND_URL}/api/v1`;
 
 async function fetchJson<T>(url: string, options?: RequestInit): Promise<T> {
   const res = await fetch(url, {
@@ -36,7 +37,7 @@ export const api = {
   // Dashboard & System
   getDashboardStats: () => fetchJson<DashboardStats>(`${API_BASE}/dashboard/stats`),
   getSampleReport: () => fetchJson<Audit>(`${API_BASE}/sample/sample-report`),
-  getHealth: () => fetchJson<{ status: string; version: string; database: string }>(`/health`),
+  getHealth: () => fetchJson<{ status: string; version: string; database: string }>(`${BACKEND_URL || ''}/health`),
 
   // Audits CRUD
   listAudits: (skip = 0, limit = 50) =>
